@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: IAM Lab - Automating IAM Resources with GitSync
+
+Resources:
+  # Generate a random password and store in Secrets Manager
+  # UserPasswordSecret:
+  #   Type: AWS::SecretsManager::Secret
+  #   Properties:
+  #     Name: OneTimeIAMPassword
+  #     Description: One-time password for IAM users
+  #     GenerateSecretString:
+  #       PasswordLength: 16
+  #       ExcludeCharacters: '"@/\'
+  #       RequireEachIncludedType: true
+
+  # IAM Groups
+  S3Group:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: S3-gtp-GroupB
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+  EC2Group:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: EC2-gtp-GroupB
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+
+  # IAM Users
+  EC2User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: ec2-gtp-userB
+      Groups:
+        - !Ref EC2Group
+      # LoginProfile:
+      #   Password: !Sub '{{resolve:secretsmanager:${UserPasswordSecret}::SecretString}}'
+      #   PasswordResetRequired: true
+
+  S3User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: s3-gtp-userB
+      Groups:
+        - !Ref S3Group
+      # LoginProfile:
+      #   Password: !Sub '{{resolve:secretsmanager:${UserPasswordSecret}::SecretString}}'
+      #   PasswordResetRequired: true
