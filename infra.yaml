@@ -17,7 +17,7 @@ Resources:
   S3Group:
     Type: AWS::IAM::Group
     Properties:
-      GroupName: S3-gtp-GroupB
+      GroupName: S3-gtp-GroupA
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
@@ -42,7 +42,7 @@ Resources:
   S3User:
     Type: AWS::IAM::User
     Properties:
-      UserName: s3-gtp-userB
+      UserName: s3-gtp-userA
       Groups:
         - !Ref S3Group
       # LoginProfile:
