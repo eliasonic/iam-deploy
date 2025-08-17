@@ -41,7 +41,7 @@ Resources:
         Password: '{{resolve:secretsmanager:OneTimeTempPassword:SecretString}}'
         PasswordResetRequired: true
 
-  # S3User:
+  S3User:
     Type: AWS::IAM::User
     Properties:
       UserName: s3-gtp-userA
