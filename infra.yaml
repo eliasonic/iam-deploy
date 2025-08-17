@@ -20,6 +20,7 @@ Resources:
       GroupName: S3-gtp-GroupA
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+        - arn:aws:iam::aws:policy/IAMUserChangePassword
 
   EC2Group:
     Type: AWS::IAM::Group
@@ -27,24 +28,25 @@ Resources:
       GroupName: EC2-gtp-GroupB
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+        - arn:aws:iam::aws:policy/IAMUserChangePassword
 
   # IAM Users
-  EC2User:
-    Type: AWS::IAM::User
-    Properties:
-      UserName: ec2-gtp-userB
-      Groups:
-        - !Ref EC2Group
+  # EC2User:
+  #   Type: AWS::IAM::User
+  #   Properties:
+  #     UserName: ec2-gtp-userB
+  #     Groups:
+  #       - !Ref EC2Group
       # LoginProfile:
       #   Password: !Sub '{{resolve:secretsmanager:${UserPasswordSecret}::SecretString}}'
       #   PasswordResetRequired: true
 
-  S3User:
-    Type: AWS::IAM::User
-    Properties:
-      UserName: s3-gtp-userA
-      Groups:
-        - !Ref S3Group
+  # S3User:
+  #   Type: AWS::IAM::User
+  #   Properties:
+  #     UserName: s3-gtp-userA
+  #     Groups:
+  #       - !Ref S3Group
       # LoginProfile:
       #   Password: !Sub '{{resolve:secretsmanager:${UserPasswordSecret}::SecretString}}'
       #   PasswordResetRequired: true
