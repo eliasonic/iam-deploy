@@ -31,22 +31,22 @@ Resources:
         - arn:aws:iam::aws:policy/IAMUserChangePassword
 
   # IAM Users
-  EC2User:
-    Type: AWS::IAM::User
-    Properties:
-      UserName: ec2-gtp-userB
-      Groups:
-        - !Ref EC2Group
-      LoginProfile:
-        Password: '{{resolve:secretsmanager:OneTimeTempPassword:SecretString}}'
-        PasswordResetRequired: true
+  # EC2User:
+  #   Type: AWS::IAM::User
+  #   Properties:
+  #     UserName: ec2-gtp-userB
+  #     Groups:
+  #       - !Ref EC2Group
+  #     LoginProfile:
+  #       Password: '{{resolve:secretsmanager:OneTimeTempPassword:SecretString}}'
+  #       PasswordResetRequired: true
 
-  S3User:
-    Type: AWS::IAM::User
-    Properties:
-      UserName: s3-gtp-userA
-      Groups:
-        - !Ref S3Group
-      LoginProfile:
-        Password: '{{resolve:secretsmanager:OneTimeTempPassword:SecretString}}'
-        PasswordResetRequired: true
+  # S3User:
+  #   Type: AWS::IAM::User
+  #   Properties:
+  #     UserName: s3-gtp-userA
+  #     Groups:
+  #       - !Ref S3Group
+  #     LoginProfile:
+  #       Password: '{{resolve:secretsmanager:OneTimeTempPassword:SecretString}}'
+  #       PasswordResetRequired: true
