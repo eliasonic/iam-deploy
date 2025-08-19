@@ -50,3 +50,13 @@ Resources:
       LoginProfile:
         Password: '{{resolve:secretsmanager:OneTimeTempPassword:SecretString}}'
         PasswordResetRequired: true
+
+  S3EliasonicUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: s3-eliasonic
+      Groups:
+        - !Ref S3Group
+      LoginProfile:
+        Password: '{{resolve:secretsmanager:OneTimeTempPassword:SecretString}}'
+        PasswordResetRequired: true
